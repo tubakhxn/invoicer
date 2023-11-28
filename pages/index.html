@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Invoice by Tuba Khan</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+
+    }
+
+    .invoice {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      background-color: #cccccc;
+
+    }
+
+    .invoice h1 {
+      text-align: center;
+    }
+
+    .invoice .recipient {
+      margin-top: 20px;
+    }
+
+    .invoice .sender {
+      margin-top: 20px;
+    }
+
+    .invoice table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .invoice table, .invoice th, .invoice td {
+      border: 1px solid #ddd;
+    }
+
+    .invoice th, .invoice td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    .invoice .total {
+      text-align: right;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="invoice">
+    <h1>Invoice</h1>
+    <div class="recipient">
+      <p><strong>Recipient:</strong></p>
+      <p>Customer Name</p>
+      <p>123 Main St</p>
+      <p>City, State ZIP</p>
+    </div>
+    <div class="sender">
+      <p><strong>Sender:</strong></p>
+      <p>Your Company Name</p>
+      <p>456 Business St</p>
+      <p>City, State ZIP</p>
+    </div>
+    <table>
+      <tr>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+      <tr>
+        <td>Product 1</td>
+        <td>2</td>
+        <td>$50.00</td>
+        <td>$100.00</td>
+      </tr>
+      <tr>
+        <td>Product 2</td>
+        <td>3</td>
+        <td>$30.00</td>
+        <td>$90.00</td>
+      </tr>
+    </table>
+    <p class="total"><strong>Total: $190.00</strong></p>
+    <script>
+      const addToCartButton = document.getElementById('add-to-cart');
+      const cartItems = document.getElementById('cart-items');
+      const totalAmount = document.getElementById('total-amount');
+      const invoice = document.getElementById('invoice');
+
+      let cart = [];
+      let total = 0;
+
+      addToCartButton.addEventListener('click', () => {
+          const quantity = parseInt(document.getElementById('quantity').value);
+          const price = 50; 
+          const itemTotal = quantity * price;
+          total += itemTotal;
+
+          const cartItem = document.createElement('div');
+          cartItem.innerHTML = `Travel Bag x${quantity} - $${itemTotal}`;
+          cartItems.appendChild(cartItem);
+
+          document.getElementById('quantity').value = 1; 
+          updateInvoice();
+      });
+
+      function updateInvoice() {
+          if (cart.length === 0) {
+              invoice.classList.add('hidden');
+          } else {
+              invoice.classList.remove('hidden');
+          }
+
+          totalAmount.textContent = total;
+      }
+ 
+  </script>
+  </div>
+</body>
+</html>

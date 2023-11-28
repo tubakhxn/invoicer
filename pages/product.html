@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice By Tuba Khan</title>
+    <link rel="stylesheet" href="invoice.js">
+</head>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color:#B6D0E2;
+
+    }
+
+    .invoice {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ddd;
+      
+
+    }
+</style>
+<body>
+
+<center>
+   <i> <h1>Welcome to the Travel Bag Store</h1></i>
+
+    <div class="product">
+        <img src="C:\Users\Tuba Khan\OneDrive\Desktop\reactApp\invoice-whatsapp\travelbag.jpg" alt="Travel Bag">
+        <h2>Travel Bag</h2>
+        <p>Price: $50</p>
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" min="1" value="1">
+        <button id="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div id="invoice" class="hidden">
+        <h2>Invoice</h2>
+        <div id="cart-items"></div>
+        <p>Total: $<span id="total-amount">0</span></p>
+    </div>
+</center>
+    <script>
+        const addToCartButton = document.getElementById('add-to-cart');
+        const cartItems = document.getElementById('cart-items');
+        const totalAmount = document.getElementById('total-amount');
+        const invoice = document.getElementById('invoice');
+
+        let cart = [];
+        let total = 0;
+
+        addToCartButton.addEventListener('click', () => {
+            const quantity = parseInt(document.getElementById('quantity').value);
+            const price = 50; 
+            const itemTotal = quantity * price;
+            total += itemTotal;
+
+            const cartItem = document.createElement('div');
+            cartItem.innerHTML = `Travel Bag x${quantity} - $${itemTotal}`;
+            cartItems.appendChild(cartItem);
+
+            document.getElementById('quantity').value = 1; 
+            updateInvoice();
+        });
+
+        function updateInvoice() {
+            if (cart.length === 0) {
+                invoice.classList.add('hidden');
+            } else {
+                invoice.classList.remove('hidden');
+            }
+
+            totalAmount.textContent = total;
+        }
+   
+    </script>
+</body>
+</html>
